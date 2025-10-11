@@ -42,10 +42,10 @@
         }
     }
     echo "Su puntaje es de $sum";
-    */
+
 
     //Ejercicio 10
-    
+
     $palos = ["Oros", "Copas", "Espadas", "Bastos"];
 
     $numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -88,6 +88,101 @@
 
 
     echo "Su puntaje es de $sum";
+    */
+
+    ?>
+
+    <h1>Ejercicio 14</h1>
+    <h3>4.</h3>
+
+    <?php
+
+    $hotel = [
+        "habitaciones" => [
+            101 => ["tipo" => "individual", "precio" => 50, "ocupada" => false, "dias_ocupada" => 0],
+            102 => ["tipo" => "doble", "precio" => 80, "ocupada" => true, "dias_ocupada" => 3],
+            103 => ["tipo" => "suite", "precio" => 150, "ocupada" => false, "dias_ocupada" => 0],
+            201 => ["tipo" => "individual", "precio" => 50, "ocupada" => true, "dias_ocupada" => 5],
+            202 => ["tipo" => "doble", "precio" => 80, "ocupada" => false, "dias_ocupada" => 0],
+            203 => ["tipo" => "suite", "precio" => 150, "ocupada" => true, "dias_ocupada" => 2]
+        ],
+        "reservas" => [
+            ["habitacion" => 102, "cliente" => "Juan Pérez", "dias" => 3],
+            ["habitacion" => 201, "cliente" => "María López", "dias" => 5],
+            ["habitacion" => 203, "cliente" => "Carlos Ruiz", "dias" => 2]
+        ]
+    ];
+
+    $ocupada = false;
+    $habitacion;
+    foreach ($hotel['habitaciones'] as $numero => $info) {
+        if ($hotel['habitaciones'][$numero]['ocupada'] == true) {
+            while ($ocupada == false) {
+                $habitacion = $numero;
+                $ocupada = true;
+
+            }
+
+        }
+    }
+
+    $total = $hotel['habitaciones'][$habitacion]['precio'] * $hotel['habitaciones'][$habitacion]['dias_ocupada'];
+    var_dump($total);
+    echo '<br>';
+
+    $hotel['habitaciones'][$habitacion]['ocupada'] = false;
+    $hotel['habitaciones'][$habitacion]['dias_ocupada'] = 0;
+
+    for ($i = 0; $i < count($hotel['reservas']); $i++) {
+        if ($hotel['reservas'][$i]['habitacion'] == $habitacion) {
+            unset($hotel['reservas'][$i]);
+        }
+    }
+    $hotel['reservas'] = array_values($hotel['reservas']);
+
+    var_dump($hotel['reservas']);
+    echo '<br>';
+
+    var_dump($hotel['habitaciones']);
+    echo '<br>';
+
+    ?>
+
+    <h3>5.</h3>
+
+    <?php
+
+    $hotel = [
+        "habitaciones" => [
+            101 => ["tipo" => "individual", "precio" => 50, "ocupada" => false, "dias_ocupada" => 0],
+            102 => ["tipo" => "doble", "precio" => 80, "ocupada" => true, "dias_ocupada" => 3],
+            103 => ["tipo" => "suite", "precio" => 150, "ocupada" => false, "dias_ocupada" => 0],
+            201 => ["tipo" => "individual", "precio" => 50, "ocupada" => true, "dias_ocupada" => 5],
+            202 => ["tipo" => "doble", "precio" => 80, "ocupada" => false, "dias_ocupada" => 0],
+            203 => ["tipo" => "suite", "precio" => 150, "ocupada" => true, "dias_ocupada" => 2]
+        ],
+        "reservas" => [
+            ["habitacion" => 102, "cliente" => "Juan Pérez", "dias" => 3],
+            ["habitacion" => 201, "cliente" => "María López", "dias" => 5],
+            ["habitacion" => 203, "cliente" => "Carlos Ruiz", "dias" => 2]
+        ]
+    ];
+
+
+    $max = 0;
+    $total = 0;
+    $habitacion = 0;
+    foreach ($hotel['habitaciones'] as $numero => $info) {
+        if ($hotel['habitaciones'][$numero]['ocupada'] == true) {
+            $total = $hotel['habitaciones'][$numero]['precio'] * $hotel['habitaciones'][$numero]['dias_ocupada'];
+            if ($total > $max) {
+                $max = $total;
+                $habitacion = $numero;
+            }
+        }
+    }
+    var_dump($max);
+    var_dump($habitacion);
 
     ?>
 </body>
